@@ -12,32 +12,40 @@ import {
 import star from '../../assets/images/star.png'
 
 type Props = {
-  name: string
-  infos: string[]
-  image: string
-  description: string
-  mark: string
-  link: string
+  id: number
+  titulo: string
+  destacado: boolean
+  tipo: string
+  avaliacao: number
+  descricao: string
+  capa: string
 }
 
-const Restaurant = ({ mark, infos, description, image, name, link }: Props) => (
+const Restaurant = ({
+  id,
+  avaliacao,
+  descricao,
+  titulo,
+  destacado,
+  tipo,
+  capa
+}: Props) => (
   <RestaurantCard>
-    <img src={image} alt={name} />
+    <img src={capa} alt={titulo} />
     <Infos>
-      {infos.map((info) => (
-        <Tag key={info}>{info}</Tag>
-      ))}
+      {destacado === true && <Tag>Destaque da Semana</Tag>}
+      <Tag>{tipo}</Tag>
     </Infos>
     <CardDescription>
       <CardTitleSection>
-        <CardTitle>{name}</CardTitle>
+        <CardTitle>{titulo}</CardTitle>
         <div className="note">
-          <CardTitle>{mark}</CardTitle>
+          <CardTitle>{avaliacao}</CardTitle>
           <img src={star} />
         </div>
       </CardTitleSection>
-      <CardText>{description}</CardText>
-      <Link className="link" to={link}>
+      <CardText>{descricao}</CardText>
+      <Link className="link" to={`/restaurant/${id}`}>
         Saiba mais
       </Link>
     </CardDescription>

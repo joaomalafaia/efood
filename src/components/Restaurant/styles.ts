@@ -6,6 +6,12 @@ export const RestaurantCard = styled.div`
   background-color: ${colors.white};
   position: relative;
 
+  > img {
+    width: 472px;
+    height: 217px;
+    object-fit: cover;
+  }
+
   ${TagContainer} {
     margin-right: 8px;
   }

@@ -10,4 +10,5 @@ export const TagContainer = styled.div<Props>`
   font-weight: bold;
   background-color: ${colors.orange};
   display: inline-block;
+  text-transform: capitalize;
 `

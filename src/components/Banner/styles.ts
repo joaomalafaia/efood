@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import pasta from '../../assets/images/pasta.png'
 import { colors } from '../../styles'
 
 export const BannerArea = styled.div`
@@ -10,7 +9,6 @@ export const BannerArea = styled.div`
 export const BannerImg = styled.div`
   width: 100%;
   height: 280px;
-  background-image: url(${pasta});
   background-size: cover;
   position: relative;
 
@@ -31,6 +29,7 @@ export const BannerText = styled.p`
   color: ${colors.white};
   position: absolute;
   top: 25px;
+  text-transform: capitalize;
 `
 
 export const BannerTitle = styled.h2`

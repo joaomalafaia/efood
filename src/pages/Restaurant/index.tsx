@@ -1,60 +1,31 @@
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+
 import Banner from '../../components/Banner'
 import DishList from '../../components/DishList'
 import RestHeader from '../../components/HeaderRestaurant/inedex'
-import Dish from '../../models/Dish'
+import { Restaurant } from '../Home'
 
-import pizzaIMG from '../../assets/images/pizza.png'
+const RestaurantPage = () => {
+  const { id } = useParams()
+  const [restaurant, setRestaurant] = useState<Restaurant>()
 
-const dishes: Dish[] = [
-  {
-    name: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: pizzaIMG,
-    id: 1
-  },
-  {
-    name: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: pizzaIMG,
-    id: 2
-  },
-  {
-    name: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: pizzaIMG,
-    id: 3
-  },
-  {
-    name: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: pizzaIMG,
-    id: 4
-  },
-  {
-    name: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: pizzaIMG,
-    id: 5
-  },
-  {
-    name: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: pizzaIMG,
-    id: 6
+  useEffect(() => {
+    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
+      .then((res) => res.json())
+      .then((res) => setRestaurant(res))
+  }, [id])
+
+  if (!restaurant) {
+    return <h3 className="container">Carregando...</h3>
   }
-]
 
-const RestaurantPage = () => (
-  <>
-    <RestHeader />
-    <Banner />
-    <DishList dishes={dishes} />
-  </>
-)
+  return (
+    <>
+      <RestHeader />
+      <Banner restaurant={restaurant} />
+      <DishList dishes={restaurant.cardapio} />
+    </>
+  )
+}
 export default RestaurantPage
