@@ -31,11 +31,11 @@ const Restaurant = ({
   capa
 }: Props) => (
   <RestaurantCard>
-    <img src={capa} alt={titulo} />
     <Infos>
       {destacado === true && <Tag>Destaque da Semana</Tag>}
       <Tag>{tipo}</Tag>
     </Infos>
+    <img src={capa} alt={titulo} />
     <CardDescription>
       <CardTitleSection>
         <CardTitle>{titulo}</CardTitle>

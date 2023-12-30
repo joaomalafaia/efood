@@ -1,9 +1,11 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
 
 import GlobalCss from './styles'
 import Home from './pages/Home'
 import Footer from './components/Footer'
 import RestaurantPage from './pages/Restaurant'
+import { store } from './store'
 
 const rotas = createBrowserRouter([
   {
@@ -19,9 +21,11 @@ const rotas = createBrowserRouter([
 function App() {
   return (
     <>
-      <GlobalCss />
-      <RouterProvider router={rotas} />
-      <Footer />
+      <Provider store={store}>
+        <GlobalCss />
+        <RouterProvider router={rotas} />
+        <Footer />
+      </Provider>
     </>
   )
 }

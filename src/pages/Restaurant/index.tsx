@@ -5,6 +5,7 @@ import Banner from '../../components/Banner'
 import DishList from '../../components/DishList'
 import RestHeader from '../../components/HeaderRestaurant/inedex'
 import { Restaurant } from '../Home'
+import Cart from '../../components/Cart'
 
 const RestaurantPage = () => {
   const { id } = useParams()
@@ -25,6 +26,7 @@ const RestaurantPage = () => {
       <RestHeader />
       <Banner restaurant={restaurant} />
       <DishList dishes={restaurant.cardapio} />
+      <Cart />
     </>
   )
 }

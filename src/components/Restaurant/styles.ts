@@ -25,6 +25,12 @@ export const Infos = styled.div`
 
 export const CardDescription = styled.div`
   padding: 8px;
+  border-top: 0;
+  border-right: 1px;
+  border-bottom: 1px;
+  border-left: 1px;
+  border-color: ${colors.orange};
+  border-style: solid;
 
   .link {
     padding: 4px 6px;
@@ -50,11 +56,8 @@ export const CardTitleSection = styled.div`
 
     img {
       height: 21px;
+      margin-left: 8px;
     }
-  }
-
-  img {
-    margin-left: 8px;
   }
 `
 
