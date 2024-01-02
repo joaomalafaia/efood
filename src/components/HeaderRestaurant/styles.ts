@@ -31,4 +31,5 @@ export const HeaderContent = styled.div`
 export const HeaderText = styled.p`
   font-size: 18px;
   font-weight: bold;
+  cursor: pointer;
 `

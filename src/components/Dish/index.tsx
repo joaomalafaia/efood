@@ -1,3 +1,5 @@
+import { useDispatch } from 'react-redux'
+
 import {
   DishCard,
   DishTitle,
@@ -11,23 +13,25 @@ import {
 import close from '../../assets/images/close 1.png'
 import { useState } from 'react'
 import { Dish } from '../../pages/Home'
+import { add, open } from '../../store/reducers/cart'
 
 type Props = {
-  dishes: Dish
+  dish: Dish
 }
 
-const Food = ({ dishes }: Props) => {
+export const formataPreco = (preco = 0) => {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(preco)
+}
+
+const Food = ({ dish }: Props) => {
   const [modalAberto, setModalAberto] = useState(false)
+  const dispatch = useDispatch()
 
   const modalIsVisible = () => {
     setModalAberto(!modalAberto)
-  }
-
-  const formataPreco = (preco = 0) => {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(preco)
   }
 
   const getDescricao = (descricao: string) => {
@@ -37,13 +41,19 @@ const Food = ({ dishes }: Props) => {
     return descricao
   }
 
+  const addToCart = () => {
+    dispatch(add(dish))
+    dispatch(open())
+    modalIsVisible()
+  }
+
   return (
     <>
       <div>
         <DishCard className="container">
-          <img src={dishes.foto} alt={dishes.nome} />
-          <DishTitle>{dishes.nome}</DishTitle>
-          <DishText>{getDescricao(dishes.descricao)}</DishText>
+          <img src={dish.foto} alt={dish.nome} />
+          <DishTitle>{dish.nome}</DishTitle>
+          <DishText>{getDescricao(dish.descricao)}</DishText>
           <DishButton onClick={modalIsVisible}>Mais detalhes</DishButton>
         </DishCard>
       </div>
@@ -55,13 +65,13 @@ const Food = ({ dishes }: Props) => {
             className="close"
             onClick={modalIsVisible}
           />
-          <img src={dishes.foto} alt={dishes.nome} className="dish" />
+          <img src={dish.foto} alt={dish.nome} className="dish" />
           <ModalText>
-            <h3>{dishes.nome}</h3>
-            <p>{dishes.descricao}</p>
-            <p>{dishes.porcao}</p>
-            <ModalButton>
-              Adicionar ao carrinho - {formataPreco(dishes.preco)}
+            <h3>{dish.nome}</h3>
+            <p>{dish.descricao}</p>
+            <p>{dish.porcao}</p>
+            <ModalButton onClick={addToCart}>
+              Adicionar ao carrinho - {formataPreco(dish.preco)}
             </ModalButton>
           </ModalText>
         </ModalContent>

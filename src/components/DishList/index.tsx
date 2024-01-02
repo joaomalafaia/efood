@@ -10,7 +10,7 @@ const DishList = ({ dishes }: Props) => (
   <DishContainer className="container">
     <List>
       {dishes.map((dish) => (
-        <Food dishes={dish} key={dish.id} />
+        <Food dish={dish} key={dish.id} />
       ))}
     </List>
   </DishContainer>
