@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Logo } from '../../styles'
-import logo from '../../assets/images/efood-logo.png'
-import { Header, HeaderContent, HeaderText } from './styles'
 import { open } from '../../store/reducers/cart'
 import { RootReducer } from '../../store'
+
+import logo from '../../assets/images/efood-logo.png'
+
+import { Logo } from '../../styles'
+import { Header, HeaderContent, HeaderText } from './styles'
 
 const RestHeader = () => {
   const dispatch = useDispatch()
@@ -17,10 +19,14 @@ const RestHeader = () => {
   return (
     <Header>
       <HeaderContent className="container">
-        <Link className="header-text" to="/">
+        <Link
+          title="Clique para retornar ao menu de restaurantes"
+          className="header-text"
+          to="/"
+        >
           Restaurantes
         </Link>
-        <Link to="/">
+        <Link title="Clique para retornar à home" to="/">
           <Logo src={logo} alt="efood" />
         </Link>
         <HeaderText onClick={openCart}>

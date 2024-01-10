@@ -1,43 +1,8 @@
 import styled from 'styled-components'
 import { colors } from '../../styles'
-import { ModalButton } from '../Dish/styles'
 import trash from '../../assets/images/trash.png'
 
-export const CartScreen = styled.div`
-  position: fixed;
-  display: none;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  justify-content: flex-end;
-
-  &.opened {
-    display: flex;
-  }
-`
-
-export const Overlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-`
-
-export const Sidebar = styled.aside`
-  z-index: 1;
-  width: 360px;
-  background-color: ${colors.orange};
-  padding: 32px 8px 0;
-  color: ${colors.lightOrange};
-
-  ${ModalButton} {
-    max-width: 100%;
-    width: 100%;
-  }
-`
+export const CartSection = styled.div``
 
 export const CartItem = styled.li`
   max-width: 100%;

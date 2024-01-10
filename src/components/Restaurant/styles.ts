@@ -5,6 +5,8 @@ import { TagContainer } from '../Tag/styles'
 export const RestaurantCard = styled.div`
   background-color: ${colors.white};
   position: relative;
+  border: 1px solid ${colors.orange};
+  height: 100%;
 
   > img {
     width: 472px;
@@ -29,8 +31,6 @@ export const CardDescription = styled.div`
   border-right: 1px;
   border-bottom: 1px;
   border-left: 1px;
-  border-color: ${colors.orange};
-  border-style: solid;
 
   .link {
     padding: 4px 6px;

@@ -1,18 +1,17 @@
-import { Restaurant } from '../../pages/Home'
-import { BannerArea, BannerImg, BannerText, BannerTitle } from './styles'
+import * as S from './styles'
 
 type Props = {
   restaurant: Restaurant
 }
 
 const Banner = ({ restaurant }: Props) => (
-  <BannerArea>
-    <BannerImg style={{ backgroundImage: `url(${restaurant.capa})` }} />
+  <S.BannerArea>
+    <S.BannerImg style={{ backgroundImage: `url(${restaurant.capa})` }} />
     <div className="container">
-      <BannerText>{restaurant.tipo}</BannerText>
-      <BannerTitle>{restaurant.titulo}</BannerTitle>
+      <S.BannerText>{restaurant.tipo}</S.BannerText>
+      <S.BannerTitle>{restaurant.titulo}</S.BannerTitle>
     </div>
-  </BannerArea>
+  </S.BannerArea>
 )
 
 export default Banner

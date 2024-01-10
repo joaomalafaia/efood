@@ -14,6 +14,10 @@ export const Hero = styled.div`
   background-color: ${colors.lightOrange};
   text-align: center;
 
+  h1 {
+    line-height: 0;
+  }
+
   ${Logo} {
     margin-bottom: 138px;
   }

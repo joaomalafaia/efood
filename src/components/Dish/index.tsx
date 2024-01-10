@@ -1,29 +1,15 @@
 import { useDispatch } from 'react-redux'
-
-import {
-  DishCard,
-  DishTitle,
-  DishText,
-  DishButton,
-  Modal,
-  ModalContent,
-  ModalText,
-  ModalButton
-} from './styles'
-import close from '../../assets/images/close 1.png'
 import { useState } from 'react'
-import { Dish } from '../../pages/Home'
+
 import { add, open } from '../../store/reducers/cart'
+import { parseToBrl } from '../../utils'
+
+import close from '../../assets/images/close 1.png'
+
+import * as S from './styles'
 
 type Props = {
   dish: Dish
-}
-
-export const formataPreco = (preco = 0) => {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(preco)
 }
 
 const Food = ({ dish }: Props) => {
@@ -34,11 +20,11 @@ const Food = ({ dish }: Props) => {
     setModalAberto(!modalAberto)
   }
 
-  const getDescricao = (descricao: string) => {
-    if (descricao.length > 125) {
-      return descricao.slice(0, 120) + '...'
+  const getDescription = (text: string) => {
+    if (text.length > 125) {
+      return text.slice(0, 120) + '...'
     }
-    return descricao
+    return text
   }
 
   const addToCart = () => {
@@ -50,15 +36,17 @@ const Food = ({ dish }: Props) => {
   return (
     <>
       <div>
-        <DishCard className="container">
+        <S.DishCard className="container">
           <img src={dish.foto} alt={dish.nome} />
-          <DishTitle>{dish.nome}</DishTitle>
-          <DishText>{getDescricao(dish.descricao)}</DishText>
-          <DishButton onClick={modalIsVisible}>Mais detalhes</DishButton>
-        </DishCard>
+          <S.DishTitle>{dish.nome}</S.DishTitle>
+          <S.DishText>{getDescription(dish.descricao)}</S.DishText>
+          <S.DishButton title={dish.nome} onClick={modalIsVisible}>
+            Mais detalhes
+          </S.DishButton>
+        </S.DishCard>
       </div>
-      <Modal className={modalAberto === true ? 'visible' : ''}>
-        <ModalContent className="container">
+      <S.Modal className={modalAberto === true ? 'visible' : ''}>
+        <S.ModalContent className="container">
           <img
             src={close}
             alt="close icon"
@@ -66,17 +54,20 @@ const Food = ({ dish }: Props) => {
             onClick={modalIsVisible}
           />
           <img src={dish.foto} alt={dish.nome} className="dish" />
-          <ModalText>
+          <S.ModalText>
             <h3>{dish.nome}</h3>
             <p>{dish.descricao}</p>
             <p>{dish.porcao}</p>
-            <ModalButton onClick={addToCart}>
-              Adicionar ao carrinho - {formataPreco(dish.preco)}
-            </ModalButton>
-          </ModalText>
-        </ModalContent>
+            <S.ModalButton
+              title={`Adicionar ${dish.nome} ao carrinho`}
+              onClick={addToCart}
+            >
+              Adicionar ao carrinho - {parseToBrl(dish.preco)}
+            </S.ModalButton>
+          </S.ModalText>
+        </S.ModalContent>
         <div className="overlay" onClick={modalIsVisible}></div>
-      </Modal>
+      </S.Modal>
     </>
   )
 }

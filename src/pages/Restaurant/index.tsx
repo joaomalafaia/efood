@@ -4,8 +4,7 @@ import { useParams } from 'react-router-dom'
 import Banner from '../../components/Banner'
 import DishList from '../../components/DishList'
 import RestHeader from '../../components/HeaderRestaurant/inedex'
-import { Restaurant } from '../Home'
-import Cart from '../../components/Cart'
+import Aside from '../../components/Aside'
 
 const RestaurantPage = () => {
   const { id } = useParams()
@@ -26,7 +25,7 @@ const RestaurantPage = () => {
       <RestHeader />
       <Banner restaurant={restaurant} />
       <DishList dishes={restaurant.cardapio} />
-      <Cart />
+      <Aside />
     </>
   )
 }
